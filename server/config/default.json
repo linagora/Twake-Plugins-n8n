@@ -1,0 +1,11 @@
+{
+    "credentials": {
+        "id": "",
+        "secret": "",
+        "endpoint": "https://web.twake.app"
+    },
+    "server": {
+        "port": 3000,
+        "prefix": ""
+    }
+}

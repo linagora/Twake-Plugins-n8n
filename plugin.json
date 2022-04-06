@@ -1,0 +1,31 @@
+{
+    "server": {
+        "entrypoint": "server/index.ts"
+    },
+    "identity": {
+        "name": "n8n",
+        "code": "n8n",
+        "icon": "https://global-uploads.webflow.com/60007e8836e7de41bc41823d/62266cf2029ea959db7c764e_98F2kya-_400x400.png",
+        "description": "N8n automation service for Twake",
+        "website": "https://n8n.io",
+        "compatibility": ["twake"]
+    },
+    "api": {
+        "hooks_url": "/hook"
+    },
+    "access": {
+        "write": [
+            "messages"
+        ]
+    },
+    "display": {
+        "twake": {
+            "version": 1,
+            "configuration": [
+                "global",
+                "channel"
+            ]
+            
+        }
+    }
+}
