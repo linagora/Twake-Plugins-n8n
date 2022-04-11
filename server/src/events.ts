@@ -46,7 +46,7 @@ export const createKey = async (event: HookEvent) => {
     company_id: event.company_id,
   };
 
-  const token = jwt.sign(jwtPayload, "secret");
+  const token = jwt.sign(jwtPayload, config.get("n8n.secret"));
 
   const form = generateConfig(event.content.user, token);
 

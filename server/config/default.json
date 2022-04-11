@@ -7,5 +7,9 @@
     "server": {
         "port": 3000,
         "prefix": ""
+    },
+    "n8n": {
+        "endpoint": "https://web.twake.app/n8n",
+        "secret": "secret"
     }
 }
