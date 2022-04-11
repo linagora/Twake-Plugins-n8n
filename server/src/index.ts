@@ -6,6 +6,11 @@ import { createKey, listChannels, sendN8nMessage } from "./events";
 const app = express();
 app.use(express.json());
 
+app.use(
+  config.get("server.prefix") + "/assets",
+  express.static(__dirname + "/../assets")
+);
+
 // Entrypoint for every events comming from Twake
 app.post(config.get("server.prefix") + "/hook", async (req, res) => {
   const event = req.body as HookEvent;
