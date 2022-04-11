@@ -1,11 +1,15 @@
 {
-    "credentials": {
-        "id": "CREDENTIALS_ID",
-        "secret": "CREDENTIALS_SECRET",
-        "endpoint": "CREDENTIALS_ENDPOINT"
-    },
-    "server": {
-        "port": "SERVER_PORT",
-        "prefix": "SERVER_PREFIX"
-    }
+  "credentials": {
+    "id": "CREDENTIALS_ID",
+    "secret": "CREDENTIALS_SECRET",
+    "endpoint": "CREDENTIALS_ENDPOINT"
+  },
+  "server": {
+    "port": "SERVER_PORT",
+    "prefix": "SERVER_PREFIX"
+  },
+  "n8n": {
+    "endpoint": "N8N_ENDPOINT",
+    "jwt_secret": "N8N_JWT_SECRET"
+  }
 }
