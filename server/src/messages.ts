@@ -16,7 +16,11 @@ export const generateConfig = (
         },
         {
           type: "url",
+          content: "https://n8n.io/",
           url: "https://n8n.io/",
+        },
+        {
+          type: "br",
         },
         {
           type: "br",
