@@ -36,7 +36,9 @@ app.post(prefix + "/actions/message/save", async (req, res) => {
   const event_body = req.body as N8nBodyEvent;
   const event_headers = req.headers as N8nHeadersEvent;
 
-  return res.send(await sendN8nMessage(event_body, event_headers));
+  await sendN8nMessage(event_body, event_headers);
+
+  return res.send({ object: "ok" });
 });
 
 const port = config.get("server.port");

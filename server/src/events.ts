@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { ChannelType, HookEvent, N8nHeadersEvent } from "./types";
 import { getAccessToken, parseJwt } from "./utils";
-import { formateN8nMessage, generateConfig } from "./messages";
+import { formatN8nMessage, generateConfig } from "./messages";
 import config from "config";
 import jwt from "jsonwebtoken";
 
@@ -23,7 +23,12 @@ export const sendN8nMessage = async (body: any, headers: any) => {
   const workspace_id = parseJwt(jwtFromN8n).workspace_id;
   const msg = {
     subtype: "application",
-    blocks: formateN8nMessage(body.object.content.formatted),
+    blocks: formatN8nMessage(body.object.content.formatted),
+    text:
+      "N8n notification " +
+      (body.object.hidden_data.custom_title
+        ? body.object.hidden_data.custom_title
+        : ""),
     override: {
       title: body.object.hidden_data.custom_title
         ? body.object.hidden_data.custom_title
@@ -44,6 +49,7 @@ export const createKey = async (event: HookEvent) => {
   const jwtPayload = {
     workspace_id: event.workspace_id,
     company_id: event.company_id,
+    user_id: event.user_id,
   };
 
   const token = jwt.sign(jwtPayload, config.get("n8n.jwt_secret"));
@@ -82,7 +88,6 @@ const createConfigurator = async (
       body: JSON.stringify(data),
     });
     const t = await res.json();
-    console.log("t", t);
     return t;
   } catch (err) {
     console.log("err", err);
@@ -94,10 +99,11 @@ export const listChannels = async (event: N8nHeadersEvent) => {
   const jwtFromN8n = event.authorization.split(" ")[1];
   const company_id = parseJwt(jwtFromN8n).company_id;
   const workspace_id = parseJwt(jwtFromN8n).workspace_id;
+  const user_id = parseJwt(jwtFromN8n).user_id;
 
   const url =
     config.get("credentials.endpoint") +
-    `/api/channels/v1/companies/${company_id}/workspaces/${workspace_id}/channels`;
+    `/api/channels/v1/companies/${company_id}/workspaces/${workspace_id}/channels?mine=1&user_id=${user_id}`;
 
   try {
     const res = await fetch(url, {

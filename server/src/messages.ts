@@ -9,17 +9,49 @@ export const generateConfig = (
   return [
     {
       type: "system",
-      content: t(lang, "workspace_key"),
+      content: t(lang, "workspace_key_1"),
+    },
+    {
+      type: "url",
+      url: "https://n8n.io/",
+    },
+    {
+      type: "br",
+    },
+    {
+      type: "system",
+      content: t(lang, "workspace_key_2"),
     },
     {
       type: "copiable",
       user_identifier: true,
       content: jwt,
     },
+    {
+      type: "br",
+    },
+    {
+      type: "system",
+      content: t(lang, "workspace_key_info"),
+    },
   ];
 };
 
-export const formateN8nMessage = (content: string) => {
+export const formatN8nMessage = (content: string) => {
+  try {
+    const parsed = JSON.parse(content);
+    if (parsed.twacode) {
+      return [
+        {
+          type: "twacode",
+          content: parsed.twacode,
+        },
+      ];
+    } else if (parsed.blocks) {
+      return parsed.blocks;
+    }
+  } catch (e) {}
+
   return [
     {
       type: "twacode",
