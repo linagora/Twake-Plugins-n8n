@@ -8,27 +8,36 @@ export const generateConfig = (
   const lang = user?.preferences.locale || "";
   return [
     {
-      type: "system",
-      content: t(lang, "workspace_key_1"),
-    },
-    {
-      type: "br",
-    },
-    {
-      type: "system",
-      content: t(lang, "workspace_key_2"),
-    },
-    {
-      type: "copiable",
-      user_identifier: true,
-      content: jwt,
-    },
-    {
-      type: "br",
-    },
-    {
-      type: "system",
-      content: t(lang, "workspace_key_info"),
+      type: "twacode",
+      elements: [
+        {
+          type: "system",
+          content: t(lang, "workspace_key_1"),
+        },
+        {
+          type: "url",
+          url: "https://n8n.io/",
+        },
+        {
+          type: "br",
+        },
+        {
+          type: "system",
+          content: t(lang, "workspace_key_2"),
+        },
+        {
+          type: "copiable",
+          user_identifier: true,
+          content: jwt,
+        },
+        {
+          type: "br",
+        },
+        {
+          type: "system",
+          content: t(lang, "workspace_key_info"),
+        },
+      ],
     },
   ];
 };
