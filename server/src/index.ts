@@ -27,12 +27,12 @@ app.post(prefix + "/hook", async (req, res) => {
   res.send({ error: "Not implemented" });
 });
 
-app.post(prefix + "/n8n/channel", async (req, res) => {
+app.post(prefix + "/channel", async (req, res) => {
   const event = req.headers as N8nHeadersEvent;
   return res.send(await listChannels(event));
 });
 
-app.post(prefix + "/n8n/actions/message/save", async (req, res) => {
+app.post(prefix + "/actions/message/save", async (req, res) => {
   const event_body = req.body as N8nBodyEvent;
   const event_headers = req.headers as N8nHeadersEvent;
 
