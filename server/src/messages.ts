@@ -12,10 +12,6 @@ export const generateConfig = (
       content: t(lang, "workspace_key_1"),
     },
     {
-      type: "url",
-      url: "https://n8n.io/",
-    },
-    {
       type: "br",
     },
     {

@@ -38,7 +38,7 @@ app.post(prefix + "/actions/message/save", async (req, res) => {
 
   await sendN8nMessage(event_body, event_headers);
 
-  return res.send({ object: "ok" });
+  return res.send({ object: { status: "ok" } });
 });
 
 const port = config.get("server.port");
